@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+/* Tokens del sistema OSPyD. Justificación de cada decisión en DESIGN.md. */
+@theme {
+  --color-ink: #0b2540;
+  --color-ink-soft: #c9d7e5;
+  --color-brand: #1a56a6;
+  --color-brand-strong: #13427f;
+  --color-brand-soft: #e7eff9;
+  --color-accent: #5bb8e6;
+
+  --color-paper: #f3f5f7;
+  --color-surface: #ffffff;
+  --color-line: #dce3ea;
+  --color-line-strong: #8494a5;
+  --color-muted: #4a5b6c;
+
+  --color-success: #16703f;
+  --color-success-soft: #e4f3ea;
+  --color-warning: #8a5300;
+  --color-warning-soft: #fbf0dc;
+  --color-danger: #b42318;
+  --color-danger-soft: #fce9e7;
+
+  --font-sans: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-atkinson-mono), ui-monospace, monospace;
+
+  --radius-control: 10px;
+  --radius-panel: 16px;
+
+  --ease-out-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --shadow-card: 0 1px 2px rgb(11 37 64 / 0.12), 0 12px 32px -12px rgb(11 37 64 / 0.35);
+  --shadow-sheet: 0 -8px 40px -12px rgb(11 37 64 / 0.3);
+
+  --breakpoint-xs: 22.5rem;
+}
+
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --tabbar-height: 64px;
+  color-scheme: light;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--color-paper);
+  overscroll-behavior-y: none;
+}
+
+/* Foco visible y consistente en todo el producto. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+.on-ink :where(a, button, [tabindex]):focus-visible {
+  outline-color: var(--color-accent);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Diálogos nativos: animación de entrada y salida con CSS puro. */
+dialog.sheet {
+  transition:
+    translate 240ms var(--ease-out-soft),
+    opacity 200ms var(--ease-out-soft),
+    overlay 240ms allow-discrete,
+    display 240ms allow-discrete;
+  opacity: 0;
+  translate: 0 24px;
+}
+dialog.sheet[open] {
+  opacity: 1;
+  translate: 0 0;
+}
+@starting-style {
+  dialog.sheet[open] {
+    opacity: 0;
+    translate: 0 24px;
+  }
+}
+dialog.sheet::backdrop {
+  background: rgb(11 37 64 / 0);
+  transition:
+    background 240ms var(--ease-out-soft),
+    overlay 240ms allow-discrete,
+    display 240ms allow-discrete;
+}
+dialog.sheet[open]::backdrop {
+  background: rgb(11 37 64 / 0.45);
+}
+@starting-style {
+  dialog.sheet[open]::backdrop {
+    background: rgb(11 37 64 / 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
