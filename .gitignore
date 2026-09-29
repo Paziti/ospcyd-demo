@@ -42,3 +42,6 @@ next-env.d.ts
 
 # material de referencia del cliente (no se versiona)
 *.mp4
+
+.vercel
+.env*
