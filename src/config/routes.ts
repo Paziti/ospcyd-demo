@@ -11,4 +11,4 @@ export const ROUTES = {
 /** Rutas que requieren sesión. El proxy y el guard del layout usan esta lista. */
 export const PROTECTED_PREFIXES = [ROUTES.home, ROUTES.credential, ROUTES.account, ROUTES.company, ROUTES.contact];
 
-export const SESSION_COOKIE = "ospyd_session";
+export const SESSION_COOKIE = "ospcyd_session";

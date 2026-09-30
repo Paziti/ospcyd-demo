@@ -1,27 +1,27 @@
 import type { ContactTopic } from "@/core/models/contact";
 
 /**
- * DATOS DE CONTACTO PROVISIONALES.
- * Teléfonos, email y dirección son placeholders que no pertenecen a OSPyD.
- * Reemplazar por los datos oficiales antes de publicar.
+ * DATOS DE CONTACTO. Fuente: sitio oficial ospcyd.org (septiembre 2026).
+ * Confirmar con OSPCyD antes de publicar la app.
  */
 export const CONTACT = {
-  provisional: true,
-  phone: { display: "0800 000 0000", href: "tel:08000000000" },
+  provisional: false,
+  phone: { display: "0810-333-7139", detail: "Línea de consulta las 24 h, los 365 días", href: "tel:08103337139" },
   whatsapp: {
-    display: "+54 9 11 0000 0000",
-    href: `https://wa.me/5491100000000?text=${encodeURIComponent("Hola, soy afiliado/a de OSPyD y quiero hacer una consulta.")}`,
+    display: "+54 9 11 2338-8231",
+    detail: "Solo mensajes, lunes a viernes de 9 a 17 h",
+    href: `https://wa.me/5491123388231?text=${encodeURIComponent("Hola, soy afiliado/a de OSPCyD y quiero hacer una consulta.")}`,
   },
-  email: { display: "afiliados@ospyd.example", href: "mailto:afiliados@ospyd.example?subject=Consulta%20de%20afiliado" },
+  mentalHealth: { display: "0800-555-2223", detail: "Emergencias de salud mental, 24 h", href: "tel:08005552223" },
+  website: { display: "ospcyd.org", href: "https://ospcyd.org/" },
   address: {
-    line: "[Dirección de la sede a confirmar]",
+    line: "Solís 1309 (C1134ADC)",
     city: "Ciudad Autónoma de Buenos Aires",
   },
-  /** Punto de referencia en el mapa hasta tener la dirección real. */
-  location: { lat: -34.6037, lon: -58.3816, label: "Ubicación de referencia (a confirmar)" },
+  location: { lat: -34.62416, lon: -58.38983, label: "Sede OSPCyD, Solís 1309, CABA" },
   hours: [
     { days: "Lunes a viernes", time: "9 a 17 h" },
-    { days: "Sábados, domingos y feriados", time: "Sin atención presencial" },
+    { days: "Línea telefónica 0810", time: "Las 24 h" },
   ],
 } as const;
 
@@ -39,6 +39,6 @@ export function mapEmbedUrl({ lat, lon }: { lat: number; lon: number }) {
   return `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat},${lon}`;
 }
 
-export function mapLinkUrl({ lat, lon }: { lat: number; lon: number }) {
-  return `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
+export function mapLinkUrl(query: string) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }

@@ -2,7 +2,7 @@ import type { Session } from "@/core/models/session";
 import { SESSION_COOKIE } from "@/config/routes";
 import { webStore } from "./storage";
 
-const SESSION_KEY = "ospyd.session";
+const SESSION_KEY = "ospcyd.session";
 
 /**
  * Persistencia de sesión en web para la demo.

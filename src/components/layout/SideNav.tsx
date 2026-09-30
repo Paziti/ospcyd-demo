@@ -16,9 +16,9 @@ export function SideNav({ member, onLogout }: { member: Member; onLogout: () => 
 
   return (
     <aside className="fixed inset-y-0 left-0 z-30 hidden flex-col border-r border-line bg-surface md:flex md:w-[88px] lg:w-[264px]">
-      <div className="flex h-20 items-center justify-center px-3 lg:justify-start lg:px-6">
+      <div className="flex min-h-20 items-center justify-center px-3 py-4 lg:justify-start lg:px-5">
         <span className="lg:hidden">
-          <Wordmark size="sm" />
+          <Wordmark size="md" markOnly />
         </span>
         <span className="hidden lg:block">
           <Wordmark size="md" withDescriptor />

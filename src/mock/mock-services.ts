@@ -16,7 +16,7 @@ interface MockOptions {
 /** Cambios hechos por los afiliados durante la demo, persistidos localmente. */
 type Overrides = Record<string, Partial<Member> & { password?: string }>;
 
-export const OVERRIDES_KEY = "ospyd.mock.overrides";
+export const OVERRIDES_KEY = "ospcyd.mock.overrides";
 const SESSION_HOURS = 8;
 
 const wait = (min: number, max: number) =>
@@ -45,7 +45,7 @@ export function createMockServices({ store, shouldFail }: MockOptions): Services
   async function request(min = 350, max = 800) {
     await wait(min, max);
     if (shouldFail()) {
-      throw new ServiceError("NETWORK", "No pudimos conectarnos con OSPyD. Revisá tu conexión e intentá de nuevo.");
+      throw new ServiceError("NETWORK", "No pudimos conectarnos con OSPCyD. Revisá tu conexión e intentá de nuevo.");
     }
   }
 

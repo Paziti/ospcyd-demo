@@ -2,7 +2,8 @@ import type { Member } from "@/core/models/member";
 
 /**
  * AFILIADOS FICTICIOS PARA LA DEMO.
- * Nombres, documentos, empresas y CUIT son inventados. No representan personas ni empresas reales.
+ * Nombres, documentos, empresas y CUIT son inventados. El Nº de afiliado sigue el formato
+ * de la credencial física (CUIL del titular / orden familiar). No representan personas ni empresas reales.
  * Las contraseñas existen solo porque no hay backend; la app real nunca guarda contraseñas en el cliente.
  */
 export interface MockAccount {
@@ -26,6 +27,9 @@ function isoFromToday(days: number): string {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
+/** Plan único de referencia: la credencial física no informa planes. [A confirmar por OSPCyD] */
+const PLAN = { code: "PMO", name: "Plan PMO" };
+
 export const MOCK_ACCOUNTS: MockAccount[] = [
   {
     password: "123456",
@@ -40,11 +44,11 @@ export const MOCK_ACCOUNTS: MockAccount[] = [
       phone: "+54 11 5555 0101",
       address: { street: "Av. Ejemplo 1234, 3° B", city: "Ciudad Autónoma de Buenos Aires", province: "CABA", postalCode: "C1000" },
       photoUrl: null,
-      affiliateNumber: "310-123456/00",
+      affiliateNumber: "27-12345678-4/0",
       affiliateType: "Titular",
       relationship: null,
       regime: "Régimen general",
-      plan: { code: "310", name: "Plan Integral" },
+      plan: PLAN,
       employer: { name: "Distribuidora Andina S.A. (ficticia)", cuit: "30-00000001-0" },
       memberSince: "2019-03-01",
     },
@@ -63,11 +67,11 @@ export const MOCK_ACCOUNTS: MockAccount[] = [
       phone: "+54 341 555 0202",
       address: { street: "Calle Ficticia 845", city: "Rosario", province: "Santa Fe", postalCode: "S2000" },
       photoUrl: null,
-      affiliateNumber: "420-234567/00",
+      affiliateNumber: "20-23456789-6/0",
       affiliateType: "Titular",
       relationship: null,
       regime: "Traspaso",
-      plan: { code: "420", name: "Plan Superior" },
+      plan: PLAN,
       employer: { name: "Logística del Litoral S.R.L. (ficticia)", cuit: "30-00000002-8" },
       memberSince: "2012-08-15",
     },
@@ -86,11 +90,11 @@ export const MOCK_ACCOUNTS: MockAccount[] = [
       phone: "+54 351 555 0303",
       address: { street: "Pasaje Modelo 77", city: "Córdoba", province: "Córdoba", postalCode: "X5000" },
       photoUrl: null,
-      affiliateNumber: "210-345678/01",
+      affiliateNumber: "20-33445566-7/1",
       affiliateType: "Familiar a cargo",
       relationship: "Cónyuge",
       regime: "Régimen general",
-      plan: { code: "210", name: "Plan Esencial" },
+      plan: PLAN,
       employer: { name: "Metalúrgica San Justo S.A. (ficticia)", cuit: "30-00000003-6" },
       memberSince: "2021-02-10",
     },

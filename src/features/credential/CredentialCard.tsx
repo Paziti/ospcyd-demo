@@ -9,6 +9,7 @@ import { barcodeValue } from "@/core/lib/credential-code";
 import { formatDate, formatDni } from "@/core/lib/format";
 import { Guilloche } from "@/components/brand/Guilloche";
 import { Wordmark } from "@/components/brand/Wordmark";
+import { BRAND } from "@/config/brand";
 import { cn } from "@/components/ui/cn";
 import { Barcode } from "./Barcode";
 
@@ -82,53 +83,60 @@ function Front({ credential, status }: { credential: Credential; status: Credent
   const chip = statusChip[status];
   const [first, ...rest] = credential.holderName.split(" ");
   return (
-    <div className={cn("on-ink relative flex size-full flex-col bg-ink p-[5cqw] text-white", status === "expired" && "saturate-[0.35]")}>
-      <Guilloche className="text-accent" opacity={0.28} />
-      {/* Banda celeste: firma visual de la credencial OSPyD. */}
-      <span aria-hidden className="absolute inset-y-0 right-0 w-[2.2cqw] bg-accent" />
-
-      <div className="relative flex items-start justify-between gap-2">
-        <Wordmark tone="white" size="card" withDescriptor />
-        <span className={cn("inline-flex items-center gap-1 rounded-md px-[2cqw] py-[1.2cqw] font-bold", label, chip.className)}>
+    <div className={cn("on-ink relative flex size-full flex-col bg-brand-deep text-white", status === "expired" && "saturate-[0.35]")}>
+      {/* Franja clara con el logo y banda verde lateral: los rasgos de la credencial física de OSPCyD. */}
+      <div className="relative flex items-center justify-between gap-2 bg-gradient-to-r from-white to-[#e4e7e5] py-[2.8cqw] pl-[5cqw] pr-[7cqw]">
+        <div className="flex min-w-0 flex-col">
+          <Wordmark size="card" partner />
+          <p className="mt-[0.6cqw] pl-[9.2cqw] text-[clamp(8px,2.3cqw,10px)] font-semibold leading-none text-muted">
+            R.N.O.S. {BRAND.rnos}
+          </p>
+        </div>
+        <span className={cn("inline-flex shrink-0 items-center gap-1 rounded-md px-[2cqw] py-[1.2cqw] font-bold", label, chip.className)}>
           <chip.Icon weight="fill" className="size-[1.25em]" aria-hidden />
           {STATUS_LABEL[status]}
         </span>
       </div>
+      <span aria-hidden className="absolute inset-y-0 right-0 w-[2.6cqw] bg-accent" />
 
-      <div className="relative mt-auto flex items-center gap-[3.5cqw]">
-        <span className="grid size-[13cqw] shrink-0 place-items-center overflow-hidden rounded-full bg-white/12 text-[4.6cqw] font-bold ring-1 ring-white/25">
-          {credential.photoUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element -- foto local del afiliado (data URL).
-            <img src={credential.photoUrl} alt="" className="size-full object-cover" />
-          ) : (
-            <span aria-hidden>
-              {first[0]}
-              {credential.holderName.split(" ").at(-1)?.[0]}
-            </span>
-          )}
-        </span>
-        <div className="min-w-0">
-          <p className="truncate text-[clamp(15px,5.2cqw,22px)] font-bold leading-tight">
-            {first} {rest.join(" ")}
-          </p>
-          <p className={cn(label, "mt-[0.8cqw] text-ink-soft")}>
-            DNI <span className="font-mono tabular text-white">{formatDni(credential.dni)}</span>
-          </p>
-        </div>
-      </div>
+      <div className="relative flex flex-1 flex-col overflow-hidden px-[5cqw] pb-[4.5cqw] pr-[7cqw]">
+        <Guilloche className="text-accent" opacity={0.3} />
 
-      <div className="relative mt-[4cqw] flex items-end justify-between gap-[3cqw] border-t border-white/20 pt-[3cqw]">
-        <div className="min-w-0">
-          <p className={cn(label, "text-ink-soft")}>Nº de afiliado</p>
-          <p className="font-mono text-[clamp(16px,5.6cqw,24px)] font-bold leading-tight tracking-[0.02em] tabular">
-            {credential.affiliateNumber}
-          </p>
+        <div className="relative mt-auto flex items-center gap-[3.5cqw]">
+          <span className="grid size-[13cqw] shrink-0 place-items-center overflow-hidden rounded-full bg-white/12 text-[4.6cqw] font-bold ring-1 ring-white/25">
+            {credential.photoUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element -- foto local del afiliado (data URL).
+              <img src={credential.photoUrl} alt="" className="size-full object-cover" />
+            ) : (
+              <span aria-hidden>
+                {first[0]}
+                {credential.holderName.split(" ").at(-1)?.[0]}
+              </span>
+            )}
+          </span>
+          <div className="min-w-0">
+            <p className="truncate text-[clamp(15px,5.2cqw,22px)] font-bold leading-tight">
+              {first} {rest.join(" ")}
+            </p>
+            <p className={cn(label, "mt-[0.8cqw] text-deep-soft")}>
+              DNI <span className="font-mono tabular text-white">{formatDni(credential.dni)}</span>
+            </p>
+          </div>
         </div>
-        <div className="shrink-0 text-right">
-          <p className={cn(label, "text-ink-soft")}>{credential.plan.name}</p>
-          <p className={cn(label, "mt-[0.6cqw] font-semibold")}>
-            Vence <span className="font-mono tabular">{formatDate(credential.expiresAt)}</span>
-          </p>
+
+        <div className="relative mt-[4cqw] flex items-end justify-between gap-[3cqw] border-t border-white/20 pt-[3cqw]">
+          <div className="min-w-0">
+            <p className={cn(label, "text-deep-soft")}>Nº de afiliado</p>
+            <p className="font-mono text-[clamp(16px,5.6cqw,24px)] font-bold leading-tight tracking-[0.02em] tabular">
+              {credential.affiliateNumber}
+            </p>
+          </div>
+          <div className="shrink-0 text-right">
+            <p className={cn(label, "text-deep-soft")}>{credential.plan.name}</p>
+            <p className={cn(label, "mt-[0.6cqw] font-semibold")}>
+              Vence <span className="font-mono tabular">{formatDate(credential.expiresAt)}</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -154,8 +162,9 @@ function Back({ credential }: { credential: Credential }) {
       </div>
 
       <p className="mt-auto border-t border-line pt-[2cqw] text-[clamp(9.5px,2.75cqw,11.5px)] leading-snug text-muted">
-        Superintendencia de Servicios de Salud · Órgano de control · 0800-222-SALUD (72583) · www.sssalud.gob.ar.
-        Credencial personal e intransferible: presentala junto con tu DNI. <span className="font-semibold">Prototipo con datos ficticios.</span>
+        {BRAND.fullName} · R.N.O.S. {BRAND.rnos}. Superintendencia de Servicios de Salud · Órgano de control · 0800-222-SALUD
+        (72583) · www.argentina.gob.ar/sssalud. Personal e intransferible, presentala con tu DNI.{" "}
+        <span className="font-semibold">Prototipo con datos ficticios.</span>
       </p>
     </div>
   );

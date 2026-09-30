@@ -1,19 +1,21 @@
 @import "tailwindcss";
 
-/* Tokens del sistema OSPyD. Justificación de cada decisión en DESIGN.md. */
+/* Tokens del sistema OSPCyD. Justificación de cada decisión en DESIGN.md. */
 @theme {
-  --color-ink: #0b2540;
-  --color-ink-soft: #c9d7e5;
-  --color-brand: #1a56a6;
-  --color-brand-strong: #13427f;
-  --color-brand-soft: #e7eff9;
-  --color-accent: #5bb8e6;
+  /* Identidad OSPCyD: verde institucional del isotipo y del sitio oficial (#00a859 / #00923e). */
+  --color-ink: #1e2622;
+  --color-brand-deep: #0b5e30;
+  --color-deep-soft: #d6efe0;
+  --color-brand: #007a3d;
+  --color-brand-strong: #005f2f;
+  --color-brand-soft: #e6f4ec;
+  --color-accent: #00a859;
 
-  --color-paper: #f3f5f7;
+  --color-paper: #f3f5f4;
   --color-surface: #ffffff;
-  --color-line: #dce3ea;
-  --color-line-strong: #8494a5;
-  --color-muted: #4a5b6c;
+  --color-line: #dde3df;
+  --color-line-strong: #86958d;
+  --color-muted: #4e5a54;
 
   --color-success: #16703f;
   --color-success-soft: #e4f3ea;
@@ -30,8 +32,8 @@
 
   --ease-out-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
 
-  --shadow-card: 0 1px 2px rgb(11 37 64 / 0.12), 0 12px 32px -12px rgb(11 37 64 / 0.35);
-  --shadow-sheet: 0 -8px 40px -12px rgb(11 37 64 / 0.3);
+  --shadow-card: 0 1px 2px rgb(20 40 30 / 0.14), 0 12px 32px -12px rgb(20 40 30 / 0.38);
+  --shadow-sheet: 0 -8px 40px -12px rgb(20 40 30 / 0.3);
 
   --breakpoint-xs: 22.5rem;
 }
@@ -94,18 +96,18 @@ dialog.sheet[open] {
   }
 }
 dialog.sheet::backdrop {
-  background: rgb(11 37 64 / 0);
+  background: rgb(20 40 30 / 0);
   transition:
     background 240ms var(--ease-out-soft),
     overlay 240ms allow-discrete,
     display 240ms allow-discrete;
 }
 dialog.sheet[open]::backdrop {
-  background: rgb(11 37 64 / 0.45);
+  background: rgb(20 40 30 / 0.45);
 }
 @starting-style {
   dialog.sheet[open]::backdrop {
-    background: rgb(11 37 64 / 0);
+    background: rgb(20 40 30 / 0);
   }
 }
 

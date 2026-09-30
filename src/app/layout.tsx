@@ -20,16 +20,16 @@ const atkinsonMono = Atkinson_Hyperlegible_Mono({
 });
 
 export const metadata: Metadata = {
-  title: { default: "OSPyD · Afiliados", template: "%s · OSPyD" },
-  description: "Credencial digital y gestión de datos para afiliados de OSPyD. Prototipo de demostración con datos ficticios.",
-  applicationName: "OSPyD",
-  appleWebApp: { capable: true, title: "OSPyD", statusBarStyle: "default" },
+  title: { default: "OSPCyD · Afiliados", template: "%s · OSPCyD" },
+  description: "Credencial digital y gestión de datos para afiliados de OSPCyD. Prototipo de demostración con datos ficticios.",
+  applicationName: "OSPCyD",
+  appleWebApp: { capable: true, title: "OSPCyD", statusBarStyle: "default" },
   formatDetection: { telephone: false },
   robots: { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b2540",
+  themeColor: "#0b5e30",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",

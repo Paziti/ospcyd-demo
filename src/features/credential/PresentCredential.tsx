@@ -31,7 +31,7 @@ export function PresentCredential({ open, onClose, credential, status }: Props) 
     <Sheet open={open} onClose={onClose} title="Credencial para el prestador" variant="fullscreen" hideTitle>
       <div className="mx-auto flex min-h-full max-w-md flex-col items-center gap-5 pb-[calc(var(--safe-bottom)+24px)] text-center">
         <div className="flex w-full items-center justify-between">
-          <Wordmark size="sm" withDescriptor />
+          <Wordmark size="sm" partner />
           <StatusBadge status={status} />
         </div>
 

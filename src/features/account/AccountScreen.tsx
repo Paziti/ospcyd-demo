@@ -20,13 +20,13 @@ export function AccountScreen() {
   const [logoutOpen, setLogoutOpen] = useState(false);
 
   return (
-    <Page title="Mi cuenta" description="Tus datos como afiliado de OSPyD.">
+    <Page title="Mi cuenta" description="Tus datos como afiliado de OSPCyD.">
       <div className="flex flex-col gap-5">
         <ProfileHeader member={member} />
 
         <Panel
           title="Datos personales"
-          description="Para corregirlos comunicate con OSPyD."
+          description="Para corregirlos comunicate con OSPCyD."
           action={
             <Button
               variant="ghost"

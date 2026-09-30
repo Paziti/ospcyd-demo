@@ -25,7 +25,7 @@ export function QrCode({ payload, label, className }: { payload: string; label: 
       shapeRendering="crispEdges"
       className={cn("block aspect-square bg-white", className)}
     >
-      <path d={path} fill="#0b2540" />
+      <path d={path} fill="#1e2622" />
     </svg>
   );
 }

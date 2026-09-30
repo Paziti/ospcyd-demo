@@ -24,7 +24,7 @@ export function qrWindow(now: Date): number {
 
 export function credentialQrPayload(credential: Credential, window: number): string {
   const body = [
-    "OSPYD1",
+    "OSPCYD1",
     credential.affiliateNumber,
     credential.dni,
     credential.expiresAt,

@@ -1,6 +1,6 @@
-# OSPyD · App de afiliados (demo)
+# OSPCyD · App de afiliados (demo)
 
-Prototipo web de la futura app móvil de OSPyD para iOS y Android: ingreso de afiliados, credencial digital con QR, datos de cuenta, información institucional y contacto.
+Prototipo web de la futura app móvil de O.S.P.C.y.D. (Obra Social del Personal de Carga y Descarga, R.N.O.S. 1-0340-2) para iOS y Android: ingreso de afiliados, credencial digital con QR, datos de cuenta, información institucional y contacto.
 
 > **Demo con datos ficticios.** No hay backend ni autenticación real. Ningún dato se envía a un servidor.
 
@@ -21,9 +21,9 @@ Contraseña de todos: `123456`. También se pueden elegir desde "Afiliados de de
 
 | DNI | Afiliado | Estado de la credencial |
 |---|---|---|
-| 12345678 | Lucía Belén Ferreyra | Vigente (Plan Integral, titular) |
-| 23456789 | Martín Ezequiel Sosa | Por vencer (Plan Superior, titular) |
-| 34567890 | Carolina Inés Paz | Vencida (Plan Esencial, familiar a cargo) |
+| 12345678 | Lucía Belén Ferreyra | Vigente (titular) |
+| 23456789 | Martín Ezequiel Sosa | Por vencer (titular) |
+| 34567890 | Carolina Inés Paz | Vencida (familiar a cargo) |
 
 Los vencimientos se calculan a partir de la fecha actual, así cada afiliado muestra siempre el mismo estado.
 
@@ -68,13 +68,12 @@ src/
 
 `core/` no depende del DOM ni de Next: modelos, contratos, validaciones, estado de credencial, generación de QR y código de barras se reutilizan tal cual. Los hooks de `features/*/use-*.ts` y el contexto de sesión usan solo React. Se reemplazan los adaptadores de `platform/web` por `expo-secure-store`, `expo-sharing`, `expo-clipboard`, `expo-keep-awake` y `expo-image-picker`, y los componentes visuales por sus equivalentes nativos siguiendo los mismos tokens (`DESIGN.md`).
 
-## Contenido a reemplazar antes de publicar
+## Identidad y contenido
 
-Todo está centralizado y marcado como provisional:
-
-- Logo e ícono: `src/components/brand/Wordmark.tsx`, `src/app/icon.tsx`, `src/app/apple-icon.tsx`
-- Contenido institucional: `src/content/institution.ts`
-- Teléfonos, WhatsApp, email, dirección y horarios: `src/content/contact.ts`
-- Afiliados: `src/mock/data/members.ts` (se elimina al conectar la API)
+- Marca centralizada en `src/config/brand.ts` (sigla, nombre, R.N.O.S., CUIT y la marca asociada **OMDS**).
+- Isotipo oficial: `src/assets/ospcyd-isotipo.png` (del sitio ospcyd.org). Íconos de la app: `src/app/icon.png` y `src/app/apple-icon.png`.
+- Contenido institucional y de contacto tomados del sitio oficial: `src/content/institution.ts` y `src/content/contact.ts`. Lo que falta está entre corchetes.
+- Pendiente de OSPCyD: logo de OMDS, planes reales (hoy "Plan PMO" de referencia), procedimiento de renovación de credencial y confirmación de los datos de contacto.
+- Afiliados ficticios: `src/mock/data/members.ts` (se elimina al conectar la API).
 
 Decisiones de diseño y tokens: ver [`DESIGN.md`](./DESIGN.md).

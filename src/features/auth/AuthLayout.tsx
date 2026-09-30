@@ -8,18 +8,23 @@ import { Wordmark } from "@/components/brand/Wordmark";
  */
 export function AuthLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex min-h-dvh flex-col bg-ink lg:flex-row">
+    <div className="flex min-h-dvh flex-col bg-brand-deep lg:flex-row">
       <aside
         className="on-ink relative flex shrink-0 flex-col justify-end overflow-hidden px-6 pb-12 text-white lg:sticky lg:top-0 lg:h-dvh lg:w-[46%] lg:justify-between lg:px-14 lg:py-14"
         style={{ paddingTop: "calc(var(--safe-top) + 28px)" }}
       >
         <Guilloche className="text-accent" opacity={0.3} />
         <span aria-hidden className="absolute inset-y-0 right-0 hidden w-2 bg-accent lg:block" />
-        <Wordmark tone="white" size="lg" withDescriptor className="relative" />
+        <span className="relative lg:hidden">
+          <Wordmark tone="white" size="md" withDescriptor />
+        </span>
+        <span className="relative hidden lg:block">
+          <Wordmark tone="white" size="lg" withDescriptor />
+        </span>
         <div className="relative mt-8 max-w-md lg:mt-0">
           <p className="text-[26px] font-bold leading-8 lg:text-[40px] lg:leading-[48px]">Tu credencial, siempre con vos.</p>
-          <p className="mt-3 hidden text-lg leading-7 text-ink-soft lg:block">
-            Mostrala en la recepción del prestador, consultá tus datos de afiliación y comunicate con OSPyD desde un solo lugar.
+          <p className="mt-3 hidden text-lg leading-7 text-deep-soft lg:block">
+            Mostrala en la recepción del prestador, consultá tus datos de afiliación y comunicate con OSPCyD desde un solo lugar.
           </p>
         </div>
       </aside>

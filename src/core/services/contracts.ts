@@ -5,7 +5,7 @@ import type { LoginCredentials, Session } from "../models/session";
 
 /**
  * Contratos entre la UI y el backend. La demo los implementa en `src/mock`;
- * la app real (web o React Native) los implementa contra la API de OSPyD.
+ * la app real (web o React Native) los implementa contra la API de OSPCyD.
  */
 
 export interface AuthService {

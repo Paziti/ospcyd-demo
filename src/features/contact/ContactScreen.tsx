@@ -1,4 +1,4 @@
-import { ArrowSquareOut, Envelope, MapPin, Phone, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
+import { ArrowSquareOut, Brain, Globe, MapPin, Phone, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { CONTACT, mapEmbedUrl, mapLinkUrl } from "@/content/contact";
 import { Page } from "@/components/layout/Page";
 import { ButtonLink } from "@/components/ui/Button";
@@ -14,15 +14,47 @@ export function ContactScreen() {
     <Page title="Contacto" description="Elegí el canal que te quede más cómodo." width="wide">
       <div className="flex flex-col gap-6">
         {CONTACT.provisional ? (
-          <Notice title="Datos de contacto provisionales">Teléfonos, email y dirección son de ejemplo hasta recibir los datos oficiales de OSPyD.</Notice>
+          <Notice title="Datos de contacto provisionales">Los datos se confirmarán con OSPCyD antes de publicar la app.</Notice>
         ) : null}
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-8">
           <div className="flex flex-col gap-6">
             <RowGroup>
-              <ListRow href={CONTACT.phone.href} external icon={<Phone className="size-5" aria-hidden />} title="Llamar" description={CONTACT.phone.display} trailing={external} />
-              <ListRow href={CONTACT.whatsapp.href} external icon={<WhatsappLogo className="size-5" aria-hidden />} title="WhatsApp" description={CONTACT.whatsapp.display} trailing={external} />
-              <ListRow href={CONTACT.email.href} external icon={<Envelope className="size-5" aria-hidden />} title="Email" description={CONTACT.email.display} trailing={external} />
+              <ListRow
+                href={CONTACT.phone.href}
+                external
+                icon={<Phone className="size-5" aria-hidden />}
+                title={`Llamar al ${CONTACT.phone.display}`}
+                description={CONTACT.phone.detail}
+                trailing={external}
+              />
+              <ListRow
+                href={CONTACT.whatsapp.href}
+                external
+                icon={<WhatsappLogo className="size-5" aria-hidden />}
+                title="WhatsApp de la obra social"
+                description={`${CONTACT.whatsapp.display} · ${CONTACT.whatsapp.detail}`}
+                trailing={external}
+              />
+              <ListRow
+                href={CONTACT.website.href}
+                external
+                icon={<Globe className="size-5" aria-hidden />}
+                title="Sitio oficial"
+                description={`${CONTACT.website.display} · cartilla médica y novedades`}
+                trailing={external}
+              />
+            </RowGroup>
+
+            <RowGroup>
+              <ListRow
+                href={CONTACT.mentalHealth.href}
+                external
+                icon={<Brain className="size-5" aria-hidden />}
+                title={`Salud mental: ${CONTACT.mentalHealth.display}`}
+                description={CONTACT.mentalHealth.detail}
+                trailing={external}
+              />
             </RowGroup>
 
             <Panel title="Horarios de atención">
@@ -47,7 +79,7 @@ export function ContactScreen() {
                 />
               </div>
               <ButtonLink
-                href={mapLinkUrl(CONTACT.location)}
+                href={mapLinkUrl(`${CONTACT.address.line}, ${CONTACT.address.city}`)}
                 external
                 target="_blank"
                 rel="noreferrer"

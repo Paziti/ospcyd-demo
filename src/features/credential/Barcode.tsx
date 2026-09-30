@@ -30,7 +30,7 @@ export function Barcode({ value, className }: { value: string; className?: strin
       className={cn("block bg-white", className)}
     >
       {rects.map((r) => (
-        <rect key={r.x} x={r.x} y={0} width={r.w} height={40} fill="#0b2540" />
+        <rect key={r.x} x={r.x} y={0} width={r.w} height={40} fill="#1e2622" />
       ))}
     </svg>
   );

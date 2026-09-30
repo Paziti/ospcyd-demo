@@ -30,7 +30,7 @@ export function TabBar() {
                 <span
                   className={cn(
                     "grid h-8 w-12 place-items-center rounded-full transition-colors duration-200",
-                    primary && !active && "bg-ink text-white",
+                    primary && !active && "bg-brand-deep text-white",
                     primary && active && "bg-brand text-white",
                     !primary && active && "bg-brand-soft",
                   )}

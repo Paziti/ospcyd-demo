@@ -44,9 +44,9 @@ function CredentialReady({ credential }: { credential: Credential }) {
 
   async function share() {
     const result = await shareText({
-      title: "Credencial OSPyD",
+      title: "Credencial OSPCyD",
       text: [
-        `OSPyD · ${credential.holderName}`,
+        `OSPCyD · ${credential.holderName}`,
         `DNI ${formatDni(credential.dni)}`,
         `Nº de afiliado ${credential.affiliateNumber}`,
         `${credential.plan.name} · vence ${formatDate(credential.expiresAt)}`,
@@ -154,11 +154,11 @@ export function StatusNotice({ credential, status }: { credential: Credential; s
         title={`Tu credencial venció el ${formatDate(credential.expiresAt)}`}
         action={
           <ButtonLink href={ROUTES.contact} variant="secondary" className="bg-white">
-            Contactar a OSPyD
+            Contactar a OSPCyD
           </ButtonLink>
         }
       >
-        Los prestadores pueden pedirte una credencial vigente. Comunicate con OSPyD para renovarla.
+        Los prestadores pueden pedirte una credencial vigente. Comunicate con OSPCyD para renovarla.
       </Notice>
     );
   }
@@ -169,7 +169,7 @@ export function StatusNotice({ credential, status }: { credential: Credential; s
         tone="warning"
         title={days === 0 ? "Tu credencial vence hoy" : `Tu credencial vence en ${days} ${days === 1 ? "día" : "días"}`}
       >
-        Hasta esa fecha podés usarla con normalidad. Si tenés dudas sobre la renovación, comunicate con OSPyD.
+        Hasta esa fecha podés usarla con normalidad. Si tenés dudas sobre la renovación, comunicate con OSPCyD.
       </Notice>
     );
   }
@@ -187,7 +187,7 @@ function FaceToggle({ face, onChange }: { face: CardFace; onChange: (f: CardFace
           onClick={() => onChange(f)}
           className={cn(
             "min-h-10 rounded-[7px] px-4 text-[15px] font-semibold transition-colors duration-150",
-            face === f ? "bg-ink text-white" : "text-muted hover:text-ink",
+            face === f ? "bg-brand-deep text-white" : "text-muted hover:text-ink",
           )}
         >
           {f === "front" ? "Frente" : "Dorso"}
